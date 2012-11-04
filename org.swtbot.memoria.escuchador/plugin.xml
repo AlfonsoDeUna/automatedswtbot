@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Sample Category"
+            id="org.swtbot.memoria.escuchador.commands.category">
+      </category>
+      <command
+            name="Sample Command"
+            categoryId="org.swtbot.memoria.escuchador.commands.category"
+            id="org.swtbot.memoria.escuchador.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.swtbot.memoria.escuchador.commands.sampleCommand"
+            class="org.swtbot.memoria.escuchador.handlers.SwtBotRecordedHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.swtbot.memoria.escuchador.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Record"
+               mnemonic="M"
+               id="org.swtbot.memoria.escuchador.menus.sampleMenu">
+            <command
+                  commandId="org.swtbot.memoria.escuchador.commands.sampleCommand"
+                  mnemonic="S"
+                  id="org.swtbot.memoria.escuchador.menus.sampleCommand">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="org.swtbot.memoria.escuchador.toolbars.sampleToolbar">
+            <command
+                  commandId="org.swtbot.memoria.escuchador.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  tooltip="Say hello world"
+                  id="org.swtbot.memoria.escuchador.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

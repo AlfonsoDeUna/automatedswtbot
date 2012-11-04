@@ -1,0 +1,20 @@
+package org.eclipse.library
+
+class Event {	
+	String name
+	int x
+	int y
+	int width
+	int height
+	int time
+	int button
+	char key	
+	contains Widget[] libros	
+}
+
+class Widget {
+	String name		
+}
+
+
+
