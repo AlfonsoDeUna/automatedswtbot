@@ -1,7 +1,9 @@
 package org.swtbot.memoria.model
 
 class Event {	
+	
 	String name
+	int numevent
 	int x
 	int y
 	int width
@@ -9,11 +11,17 @@ class Event {
 	int time
 	int button
 	char key	
-	contains Widget[] libros	
+	contains Widget[] widget
+		
 }
 
 class Widget {
 	String name		
+}
+
+class TestRecordProject {
+	
+	contains Event[] eventos 
 }
 
 

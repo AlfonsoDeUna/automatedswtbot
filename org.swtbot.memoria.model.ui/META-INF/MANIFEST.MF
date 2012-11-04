@@ -1,11 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Escuchador
-Bundle-SymbolicName: org.swtbot.memoria.escuchador; singleton:=true
+Bundle-Name: Ui
+Bundle-SymbolicName: org.swtbot.memoria.model.ui; singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.swtbot.memoria.escuchador.Activator
+Bundle-Activator: org.swtbot.memoria.model.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.swtbot.memoria.model;bundle-version="1.0.0"
+ org.eclipse.graphiti,
+ org.eclipse.graphiti.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

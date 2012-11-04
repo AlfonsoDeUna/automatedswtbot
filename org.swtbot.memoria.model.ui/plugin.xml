@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            name="Ui Diagram Type"
+            type="ui"
+            id="org.swtbot.memoria.model.ui.uiDiagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            name="Ui Diagram Type Provider"
+            class="org.swtbot.memoria.model.ui.diagram.UiDiagramTypeProvider"
+            id="org.swtbot.memoria.model.ui.uiDiagramTypeProvider">
+         <diagramType
+               id="org.swtbot.memoria.model.ui.uiDiagramType">
+         </diagramType>
+      </diagramTypeProvider>
+   </extension>
+
+</plugin>

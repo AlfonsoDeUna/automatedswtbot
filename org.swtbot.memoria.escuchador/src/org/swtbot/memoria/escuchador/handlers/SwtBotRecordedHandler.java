@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -14,6 +15,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.swtbot.memoria.model.TestRecordProject;
+import org.swtbot.memoria.model.impl.ModelFactoryImpl;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -54,14 +57,17 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 				      //may be null if outside the UI thread
 				      if (display == null)
 				         display = Display.getDefault();
+				      
+				      TestRecordProject project = ModelFactoryImpl.eINSTANCE.createTestRecordProject();
+				      final EList<org.swtbot.memoria.model.Event> eventos = project.getEventos();
 					
 				      
 				      display.addFilter(SWT.PUSH, new Listener() {
 
 						@Override
 						public void handleEvent(Event event) {
-							System.out.println("si ...PUSH" + event);
-							
+							System.out.println("si ...PUSH" + event);							
+							eventos.add(fillTestEvent(event));
 						}
 				    	  
 				      }) ;
@@ -71,7 +77,7 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 							@Override
 							public void handleEvent(Event event) {
 								System.out.println("si ...Selection" + event);
-								
+								eventos.add(fillTestEvent(event));
 							}
 					    	  
 					      }) ;
@@ -81,7 +87,7 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 				 				@Override
 				 				public void handleEvent(Event event) {
 				 					System.out.println("si ...SELECTED" + event);
-				 					
+				 					eventos.add(fillTestEvent(event));
 				 				}
 				 		    	  
 				 		      }) ;
@@ -91,7 +97,7 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 					 				@Override
 					 				public void handleEvent(Event event) {
 					 					System.out.println("si ...MouseEnter" + event);
-					 					
+					 					eventos.add(fillTestEvent(event));
 					 				}
 					 		    	  
 					 		      }) ;
@@ -102,7 +108,7 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 					 				@Override
 					 				public void handleEvent(Event event) {
 					 					System.out.println("si ...keyDown" + event);
-					 					
+					 					eventos.add(fillTestEvent(event));
 					 				}
 					 		    	  
 					 		      }) ;
@@ -116,5 +122,18 @@ public class SwtBotRecordedHandler extends AbstractHandler {
 		job.setPriority(Job.SHORT);
 		job.schedule();
 		return null;
+	}
+	
+	
+	private org.swtbot.memoria.model.Event fillTestEvent (Event e) {
+		org.swtbot.memoria.model.Event evento;
+		evento = ModelFactoryImpl.eINSTANCE.createEvent();
+		evento.setName(e.widget.toString());
+		evento.setX(e.x);
+		evento.setY(e.y);
+		evento.setWidth(e.width);
+		evento.setHeight(e.height);
+		evento.setTime(e.time);
+		return evento;
 	}
 }
