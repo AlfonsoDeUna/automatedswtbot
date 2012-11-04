@@ -1,4 +1,4 @@
-package org.eclipse.library
+package org.swtbot.memoria.model
 
 class Event {	
 	String name
